@@ -9,7 +9,11 @@ export async function POST(req) {
     const subject = formData.get("subject");
     const message = formData.get("message");
     const file = formData.get("file");
+    const secret = formData.get("secret"); // ✅ new
 
+    if (secret !== process.env.EMAIL_SECRET_KEY) {
+      return Response.json({ error: "Unauthorized access" }, { status: 403 });
+    }
     if (!emails) {
       return Response.json({ error: "Email is required" }, { status: 400 });
     }

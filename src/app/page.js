@@ -9,6 +9,7 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [secret, setSecret] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -19,6 +20,7 @@ export default function Home() {
     formData.append("emails", emails);
     formData.append("subject", subject);
     formData.append("message", message);
+    formData.append("secret", secret);
     if (file) formData.append("file", file);
 
     try {
@@ -145,6 +147,14 @@ export default function Home() {
                 : "💻 Running locally — you can attach an additional custom file."}
             </p>
           </div>
+          <input
+            type="password"
+            placeholder="Enter Secret Key"
+            value={secret}
+            onChange={(e) => setSecret(e.target.value)}
+            required
+            className="bg-white/20 placeholder-gray-200 text-white border border-white/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
+          />
 
           <button
             type="submit"
