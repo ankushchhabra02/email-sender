@@ -49,9 +49,12 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen px-4">
-      <div className="bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 w-full max-w-md min-w-lg text-white">
-        <h1 className="text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2">
+    <main className="flex flex-col items-center justify-center min-h-screen px-4 sm:px-8 py-8">
+      <div
+        className="bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 
+      p-6 sm:p-8 w-[90%] sm:w-full max-w-md md:min-w-lg text-white transition-all duration-300"
+      >
+        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -59,10 +62,10 @@ export default function Home() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-mail-icon lucide-mail"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-mail"
           >
             <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
             <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -77,7 +80,8 @@ export default function Home() {
             value={emails}
             onChange={(e) => setEmails(e.target.value)}
             required
-            className="bg-white/20 placeholder-gray-200 text-white border border-white/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
+            className="w-full bg-white/20 placeholder-gray-200 text-white border border-white/30 rounded-lg p-3 
+            focus:outline-none focus:ring-2 focus:ring-pink-400"
           />
 
           <input
@@ -85,7 +89,8 @@ export default function Home() {
             placeholder="(Optional) Subject"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
-            className="bg-white/20 placeholder-gray-200 text-white border border-white/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
+            className="w-full bg-white/20 placeholder-gray-200 text-white border border-white/30 rounded-lg p-3 
+            focus:outline-none focus:ring-2 focus:ring-pink-400"
           />
 
           <textarea
@@ -93,7 +98,8 @@ export default function Home() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={4}
-            className="bg-white/20 placeholder-gray-200 text-white border border-white/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-pink-400 resize-none"
+            className="w-full bg-white/20 placeholder-gray-200 text-white border border-white/30 rounded-lg p-3 
+            focus:outline-none focus:ring-2 focus:ring-pink-400 resize-none"
           />
 
           {/* ✅ Custom File Upload Section */}
@@ -101,7 +107,8 @@ export default function Home() {
             <label className="text-sm mb-1 text-gray-300">Attachment</label>
 
             <div
-              className={`relative flex items-center justify-between bg-white/20 rounded-lg p-2 border border-white/30 ${
+              className={`relative flex flex-col sm:flex-row items-start sm:items-center justify-between 
+              bg-white/20 rounded-lg p-3 border border-white/30 gap-2 sm:gap-0 ${
                 process.env.NEXT_PUBLIC_BASE_URL
                   ? "opacity-70 cursor-not-allowed"
                   : "opacity-100"
@@ -114,7 +121,7 @@ export default function Home() {
                   process.env.NEXT_PUBLIC_BASE_URL
                     ? "bg-gray-500 cursor-not-allowed"
                     : "bg-pink-600 hover:bg-pink-700 cursor-pointer"
-                } text-sm px-4 py-2 rounded-lg font-medium text-white transition-all duration-300 shadow-md`}
+                } text-sm px-4 py-2 rounded-lg font-medium text-white transition-all duration-300 shadow-md w-full sm:w-auto text-center`}
               >
                 {process.env.NEXT_PUBLIC_BASE_URL
                   ? "Default Attached"
@@ -131,7 +138,7 @@ export default function Home() {
               />
 
               {/* File name or message */}
-              <span className="text-sm text-gray-200 truncate max-w-[180px] ml-2">
+              <span className="text-sm text-gray-200 truncate sm:max-w-[180px] max-w-full text-center sm:text-left">
                 {process.env.NEXT_PUBLIC_BASE_URL
                   ? "ankushchhabra02Resume_mern.pdf (auto-attached)"
                   : file
@@ -141,19 +148,21 @@ export default function Home() {
             </div>
 
             {/* Environment hint below */}
-            <p className="text-xs text-gray-400 italic mt-1">
+            <p className="text-xs text-gray-400 italic mt-1 text-center sm:text-left">
               {process.env.NEXT_PUBLIC_BASE_URL
                 ? "🌐 Running on Vercel — file upload disabled. Default resume auto-attached."
                 : "💻 Running locally — you can attach an additional custom file."}
             </p>
           </div>
+
           <input
             type="password"
             placeholder="Enter Secret Key"
             value={secret}
             onChange={(e) => setSecret(e.target.value)}
             required
-            className="bg-white/20 placeholder-gray-200 text-white border border-white/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
+            className="w-full bg-white/20 placeholder-gray-200 text-white border border-white/30 rounded-lg p-3 
+            focus:outline-none focus:ring-2 focus:ring-pink-400"
           />
 
           <button
@@ -161,14 +170,14 @@ export default function Home() {
             disabled={loading}
             className={`${
               loading ? "bg-gray-500" : "bg-pink-600 hover:bg-pink-700"
-            } text-white rounded-xl p-3 font-semibold transition-all duration-300 shadow-lg`}
+            } text-white rounded-xl p-3 font-semibold transition-all duration-300 shadow-lg w-full`}
           >
             {loading ? "Sending..." : "Send Email(s)"}
           </button>
         </form>
       </div>
 
-      <footer className="mt-6 text-sm text-gray-200 opacity-70">
+      <footer className="mt-8 text-xs sm:text-sm text-gray-300 opacity-70 text-center">
         Made with ❤️ by Ankush
       </footer>
     </main>
