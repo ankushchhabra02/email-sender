@@ -94,28 +94,56 @@ export default function Home() {
             className="bg-white/20 placeholder-gray-200 text-white border border-white/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-pink-400 resize-none"
           />
 
-          {/* ✅ Custom File Upload */}
+          {/* ✅ Custom File Upload Section */}
           <div className="flex flex-col">
-            <label className="text-sm mb-1 text-gray-300">
-              Optional Attachment
-            </label>
-            <div className="relative flex items-center justify-between bg-white/20 rounded-lg p-2 border border-white/30">
+            <label className="text-sm mb-1 text-gray-300">Attachment</label>
+
+            <div
+              className={`relative flex items-center justify-between bg-white/20 rounded-lg p-2 border border-white/30 ${
+                process.env.NEXT_PUBLIC_BASE_URL
+                  ? "opacity-70 cursor-not-allowed"
+                  : "opacity-100"
+              }`}
+            >
+              {/* Upload button */}
               <label
                 htmlFor="file-upload"
-                className="bg-pink-600 hover:bg-pink-700 cursor-pointer text-sm px-4 py-2 rounded-lg font-medium text-white transition-all duration-300 shadow-md"
+                className={`${
+                  process.env.NEXT_PUBLIC_BASE_URL
+                    ? "bg-gray-500 cursor-not-allowed"
+                    : "bg-pink-600 hover:bg-pink-700 cursor-pointer"
+                } text-sm px-4 py-2 rounded-lg font-medium text-white transition-all duration-300 shadow-md`}
               >
-                Choose File
+                {process.env.NEXT_PUBLIC_BASE_URL
+                  ? "Default Attached"
+                  : "Choose File"}
               </label>
+
+              {/* File input (hidden) */}
               <input
                 id="file-upload"
                 type="file"
+                disabled={!!process.env.NEXT_PUBLIC_BASE_URL}
                 onChange={(e) => setFile(e.target.files[0])}
                 className="hidden"
               />
-              <span className="text-sm text-gray-200 truncate max-w-[150px] ml-2">
-                {file ? file.name : "No file selected"}
+
+              {/* File name or message */}
+              <span className="text-sm text-gray-200 truncate max-w-[180px] ml-2">
+                {process.env.NEXT_PUBLIC_BASE_URL
+                  ? "ankushchhabra02Resume_mern.pdf (auto-attached)"
+                  : file
+                  ? file.name
+                  : "No file selected"}
               </span>
             </div>
+
+            {/* Environment hint below */}
+            <p className="text-xs text-gray-400 italic mt-1">
+              {process.env.NEXT_PUBLIC_BASE_URL
+                ? "🌐 Running on Vercel — file upload disabled. Default resume auto-attached."
+                : "💻 Running locally — you can attach an additional custom file."}
+            </p>
           </div>
 
           <button
